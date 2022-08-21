@@ -1,0 +1,30 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Nightlights for Damage Assessment",
+    "section": "",
+    "text": "This file will become your README and also the index of your documentation."
+  },
+  {
+    "objectID": "index.html#install",
+    "href": "index.html#install",
+    "title": "Nightlights for Damage Assessment",
+    "section": "Install",
+    "text": "Install\npip install git+https://github.com/butchland/ntlights-damage-assessment.git"
+  },
+  {
+    "objectID": "index.html#how-to-use",
+    "href": "index.html#how-to-use",
+    "title": "Nightlights for Damage Assessment",
+    "section": "How to use",
+    "text": "How to use\n\nDownload the nightlights satellite imagery for the period before and after the disaster\nDownload the geospatial admin boundaries for the areas concerned\nDownload and scrape the damage assessment situationers as ground truth\nPreprocess the situationrers to extract the locations and damage assessment\nWrangle and link the damage assessment locations to the admin boundaries\nExtract the radiance data from the nightlights satellite\nAnalyze the patterns for radiance data for highly damaged areas vs undamaged or low damage areas\n\n\nsay_hello('butch')\n\n'hello, butch'"
+  },
+  {
+    "objectID": "core.html",
+    "href": "core.html",
+    "title": "Core",
+    "section": "",
+    "text": "say_hello\n\n say_hello (name)"
+  }
+]
