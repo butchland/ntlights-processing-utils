@@ -1,0 +1,31 @@
+{
+    "id": "nighttime_visible_radiance_1992-2020",
+    "stac_version": "1.0.0-beta.2",
+    "description": "Nightly visible radiance catalogues from DMSP-OLS (1992-2017, various satellites) and VIIRS NPP (2012-2020).",
+    "license": "MIT",
+    "bbox": [[-180.0, -90.0, 180.0, 90.0]],
+    "interval": [["1992-01-01T00:00:00Z", "2020-12-31T23:59:59Z"]],
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://globalnightlight.s3.amazonaws.com/catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "self",
+            "href": "https://globalnightlight.s3.amazonaws.com/catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/DMSP_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/VIIRS_npp_catalog.json",
+            "type": "application/json"
+        }
+    ]
+}
+

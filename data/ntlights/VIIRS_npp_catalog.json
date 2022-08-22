@@ -1,0 +1,550 @@
+{
+    "id": "VIIRS_DNB_npp_rade9_201204-202012",
+    "stac_version": "1.0.0-beta.2",
+    "description": "Nightly visible radiance catalogues from VIIRS DNB NPP for 2012/04 through 2020/12.",
+    "license": "MIT",
+    "bbox": [[-180.0, -90.0, 180.0, 90.0]],
+    "interval": [["2012-04-01T00:00:00Z", "2020-12-31T23:59:59Z"]],
+    "links": [
+        {
+            "rel": "root",
+            "href": "https://globalnightlight.s3.amazonaws.com/catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "https://globalnightlight.s3.amazonaws.com/catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "self",
+            "href": "https://globalnightlight.s3.amazonaws.com/VIIRS_npp_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201204/201204_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201205/201205_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201206/201206_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201207/201207_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201208/201208_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201209/201209_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201210/201210_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201211/201211_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201212/201212_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201301/201301_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201302/201302_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201303/201303_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201304/201304_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201305/201305_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201306/201306_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201307/201307_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201308/201308_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201309/201309_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201310/201310_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201311/201311_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201312/201312_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201401/201401_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201402/201402_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201403/201403_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201404/201404_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201405/201405_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201406/201406_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201407/201407_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201408/201408_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201409/201409_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201410/201410_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201411/201411_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201412/201412_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201501/201501_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201502/201502_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201503/201503_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201504/201504_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201505/201505_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201506/201506_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201507/201507_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201508/201508_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201509/201509_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201510/201510_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201511/201511_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201512/201512_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201601/201601_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201602/201602_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201603/201603_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201604/201604_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201605/201605_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201606/201606_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201607/201607_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201608/201608_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201609/201609_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201610/201610_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201611/201611_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201612/201612_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201701/201701_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201702/201702_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201703/201703_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201704/201704_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201705/201705_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201706/201706_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201707/201707_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201708/201708_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201709/201709_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201710/201710_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201711/201711_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/201712/201712_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/npp_201801/npp_201801_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/npp_201802/npp_201802_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/npp_201803/npp_201803_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/npp_201804/npp_201804_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/npp_201805/npp_201805_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/npp_201806/npp_201806_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/npp_201807/npp_201807_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/npp_201808/npp_201808_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/npp_201809/npp_201809_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/npp_201810/npp_201810_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/npp_201811/npp_201811_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/npp_201812/npp_201812_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/npp_201901/npp_201901_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/npp_201902/npp_201902_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/npp_201903/npp_201903_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/npp_201904/npp_201904_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/npp_201905/npp_201905_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/npp_201906/npp_201906_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/npp_201907/npp_201907_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/npp_201908/npp_201908_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/npp_201909/npp_201909_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/npp_201910/npp_201910_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/npp_201911/npp_201911_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/npp_201912/npp_201912_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/npp_202001/npp_202001_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/npp_202002/npp_202002_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/npp_202003/npp_202003_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/npp_202004/npp_202004_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/npp_202005/npp_202005_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/npp_202006/npp_202006_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/npp_202007/npp_202007_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/npp_202008/npp_202008_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/npp_202009/npp_202009_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/npp_202010/npp_202010_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/npp_202011/npp_202011_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "child",
+            "href": "https://globalnightlight.s3.amazonaws.com/npp_202012/npp_202012_catalog.json",
+            "type": "application/json"
+        }
+    ]
+}
