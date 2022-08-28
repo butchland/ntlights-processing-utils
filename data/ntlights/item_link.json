@@ -1,0 +1,59 @@
+{
+    "type": "Feature",
+    "stac_version": "1.0.0-beta.2",
+    "id": "SVDNB_npp_d20180901_t0002302_e0008088_b35463_c20180901040811139620_nobc_ops.rade9.co",
+    "properties": {
+        "datetime": "2018-09-01T00:02:30Z"
+    },
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+            [
+                [
+                    -48.00208333335,
+                    -64.99791677065
+                ],
+                [
+                    -48.00208333335,
+                    -51.99791666665
+                ],
+                [
+                    35.99791733865,
+                    -51.99791666665
+                ],
+                [
+                    35.99791733865,
+                    -64.99791677065
+                ],
+                [
+                    -48.00208333335,
+                    -64.99791677065
+                ]
+            ]
+        ]
+    },
+    "links": [
+        {
+            "rel": "root",
+            "href": "./npp_201809_catalog.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "parent",
+            "href": "./npp_201809_catalog.json",
+            "type": "application/json"
+        }
+    ],
+    "assets": {
+        "image": {
+            "href": "https://globalnightlight.s3.amazonaws.com/npp_201809/SVDNB_npp_d20180901_t0002302_e0008088_b35463_c20180901040811139620_nobc_ops.rade9.co.tif",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized"
+        }
+    },
+    "bbox": [
+        -48.00208333335,
+        -64.99791677065,
+        35.99791733865,
+        -51.99791666665
+    ]
+}
