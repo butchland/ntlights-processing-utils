@@ -14,6 +14,8 @@ from pathlib import Path
 
 import pandas as pd
 import re
+from shapely.geometry import Polygon, box
+import geopandas as gpd
 
 # %% ../nbs/04_explore_ntlights_stac.ipynb 9
 def make_kids_df(link=None, rel='child'):
@@ -43,10 +45,12 @@ def transform_kids_df(kids_df):
     kids_df['yearmonth'] = kids_df.folder.apply(parse_yearmonth)
     return kids_df
 
-# %% ../nbs/04_explore_ntlights_stac.ipynb 30
+# %% ../nbs/04_explore_ntlights_stac.ipynb 34
 def transform_items_df(items_df, folder, baseurl):
     items_df.drop(columns=['rel','type'], inplace=True)
     items_df['item_href'] = items_df.href.apply(get_item_href, folder=folder, baseurl=baseurl)
     items_df['stem'] = items_df.href.apply(split_href_type)
     items_df['suffix'] = items_df.href.apply(split_href_type,first=False)
+    items_df['base_url'] = baseurl
+    items_df['folder'] = folder
     return items_df
