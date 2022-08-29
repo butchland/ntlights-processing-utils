@@ -17,10 +17,10 @@ import re
 from shapely.geometry import Polygon, box
 import geopandas as gpd
 
-# %% ../nbs/00_catalogs.ipynb 5
+# %% ../nbs/00_catalogs.ipynb 6
 VIIRS_LINK = 'https://globalnightlight.s3.amazonaws.com/VIIRS_npp_catalog.json'
 
-# %% ../nbs/00_catalogs.ipynb 6
+# %% ../nbs/00_catalogs.ipynb 7
 def get_data(url: str, 
              headers: dict = {}) -> Any:
     resp = requests.get(url, headers=headers)
@@ -30,30 +30,30 @@ def get_data(url: str,
         raise ValueError(f'Unable to open {url}')
     return json.loads(dat)
 
-# %% ../nbs/00_catalogs.ipynb 9
+# %% ../nbs/00_catalogs.ipynb 10
 def make_df(data, rel):
     links = L(data['links'])
     kids = links.filter(lambda o: o['rel'] == rel)
     kids_df = pd.DataFrame.from_records(kids)
     return kids_df
 
-# %% ../nbs/00_catalogs.ipynb 13
+# %% ../nbs/00_catalogs.ipynb 14
 def parse_folder(href):
     urlparts = urlparse(href)
     urlpath = Path(urlparts.path)
     return urlpath.parts[1]
 
 
-# %% ../nbs/00_catalogs.ipynb 15
+# %% ../nbs/00_catalogs.ipynb 16
 def parse_yearmonth(folder):
     return folder[4:] if folder.startswith('npp_') else folder
 
-# %% ../nbs/00_catalogs.ipynb 17
+# %% ../nbs/00_catalogs.ipynb 18
 def parse_baseurl(href):
     urlparts = urlparse(href)
     return f'{urlparts.scheme}://{urlparts.netloc}'
 
-# %% ../nbs/00_catalogs.ipynb 19
+# %% ../nbs/00_catalogs.ipynb 20
 def transform_kids_df(kids_df):
     kids_df.drop(columns=['rel','type'], inplace=True)
     kids_df['folder'] = kids_df.href.apply(parse_folder)
@@ -61,7 +61,7 @@ def transform_kids_df(kids_df):
     kids_df['yearmonth'] = kids_df.folder.apply(parse_yearmonth)
     return kids_df
 
-# %% ../nbs/00_catalogs.ipynb 22
+# %% ../nbs/00_catalogs.ipynb 23
 def get_item_catalogs(link:str=None, 
                       rel:str='child') -> pd.DataFrame:
     link = VIIRS_LINK if link is None else link
