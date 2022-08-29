@@ -17,7 +17,7 @@ import re
 from shapely.geometry import Polygon, box
 import geopandas as gpd
 
-# %% ../nbs/04_explore_ntlights_stac.ipynb 9
+# %% ../nbs/04_explore_ntlights_stac.ipynb 10
 def make_kids_df(link=None, rel='child'):
     link = VIIRS_LINK if link is None else link
     col = Collection.open(link)
@@ -26,18 +26,18 @@ def make_kids_df(link=None, rel='child'):
     kids_df = pd.DataFrame.from_records(kids)
     return kids_df
 
-# %% ../nbs/04_explore_ntlights_stac.ipynb 14
+# %% ../nbs/04_explore_ntlights_stac.ipynb 15
 def parse_folder(href):
     urlparts = urlparse(href)
     urlpath = Path(urlparts.path)
     return urlpath.parts[1]
 
 
-# %% ../nbs/04_explore_ntlights_stac.ipynb 16
+# %% ../nbs/04_explore_ntlights_stac.ipynb 17
 def parse_yearmonth(folder):
     return folder[4:] if folder.startswith('npp_') else folder
 
-# %% ../nbs/04_explore_ntlights_stac.ipynb 20
+# %% ../nbs/04_explore_ntlights_stac.ipynb 21
 def transform_kids_df(kids_df):
     kids_df.drop(columns=['rel','type'], inplace=True)
     kids_df['folder'] = kids_df.href.apply(parse_folder)
@@ -45,7 +45,7 @@ def transform_kids_df(kids_df):
     kids_df['yearmonth'] = kids_df.folder.apply(parse_yearmonth)
     return kids_df
 
-# %% ../nbs/04_explore_ntlights_stac.ipynb 34
+# %% ../nbs/04_explore_ntlights_stac.ipynb 35
 def transform_items_df(items_df, folder, baseurl):
     items_df.drop(columns=['rel','type'], inplace=True)
     items_df['item_href'] = items_df.href.apply(get_item_href, folder=folder, baseurl=baseurl)

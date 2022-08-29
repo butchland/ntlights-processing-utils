@@ -17,20 +17,20 @@ import re
 from shapely.geometry import Polygon, box
 import geopandas as gpd
 
-# %% ../nbs/01_items.ipynb 6
+# %% ../nbs/01_items.ipynb 7
 from .catalogs import *
 
-# %% ../nbs/01_items.ipynb 14
+# %% ../nbs/01_items.ipynb 15
 def get_item_href(href,folder, baseurl):
     return f'{baseurl}/{folder}{href[1:]}'
 
-# %% ../nbs/01_items.ipynb 16
+# %% ../nbs/01_items.ipynb 17
 def split_href_type(href, first=True):
     parts = href[2:].split('.')
     return parts[0] if first else '.'.join(parts[1:])
     
 
-# %% ../nbs/01_items.ipynb 19
+# %% ../nbs/01_items.ipynb 20
 def transform_items_df(items_df, folder, baseurl):
     items_df.drop(columns=['rel','type'], inplace=True)
     items_df['item_href'] = items_df.href.apply(get_item_href, folder=folder, baseurl=baseurl)
@@ -40,10 +40,10 @@ def transform_items_df(items_df, folder, baseurl):
     items_df['folder'] = folder
     return items_df
 
-# %% ../nbs/01_items.ipynb 23
+# %% ../nbs/01_items.ipynb 24
 PAT = r'(.*[^_]+)_d([^_]*)_t([^_]*)_e([^_]*)_b([^_]*)_c([^_]*)_([^_]*)_(.*)$'
 
-# %% ../nbs/01_items.ipynb 24
+# %% ../nbs/01_items.ipynb 25
 def find_stem_components(stem):
     matcher = re.match(PAT, stem)
     if matcher is not None:
@@ -55,15 +55,15 @@ def find_stem_components(stem):
     return results[:8]
         
 
-# %% ../nbs/01_items.ipynb 26
+# %% ../nbs/01_items.ipynb 27
 def make_vflag_file(o):
     return f"npp_d{o['start_date']}_t{o['first_scantime']}_e{o['end_scantime']}_b{o['orbital_nbr']}.vflag.co.tif"
 
-# %% ../nbs/01_items.ipynb 29
+# %% ../nbs/01_items.ipynb 30
 def make_vflag_href(o):
     return f"{o['base_url']}/{o['folder']}/{o['vflag_file']}"
 
-# %% ../nbs/01_items.ipynb 32
+# %% ../nbs/01_items.ipynb 33
 def split_stem_components(df):
     (df['product_id'], 
      df['start_date'], 
@@ -78,7 +78,7 @@ def split_stem_components(df):
     df['vflag_href'] = df.apply(make_vflag_href, axis=1) 
     return df
 
-# %% ../nbs/01_items.ipynb 36
+# %% ../nbs/01_items.ipynb 37
 def get_monthly_items(href,folder,baseurl):
     data = get_data(href)
     df = make_df(data, rel='item')
