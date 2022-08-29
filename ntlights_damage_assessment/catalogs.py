@@ -27,7 +27,7 @@ def get_data(url: str,
     if resp.status_code == 200:
         dat = resp.text
     else:
-        raise ValueEror(f'Unable to open {url}')
+        raise ValueError(f'Unable to open {url}')
     return json.loads(dat)
 
 # %% ../nbs/00_catalogs.ipynb 9
