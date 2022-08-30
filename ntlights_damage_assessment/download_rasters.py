@@ -25,8 +25,8 @@ from fastcore.foundation import Config
 from functools import partial
 
 # %% ../nbs/05_download_rasters.ipynb 5
-from ntlights_damage_assessment.fetch_coords import search_dates_aoi 
-from ntlights_damage_assessment.eval_overlap import compute_overlaps
+from ntlights_processing_utils.fetch_coords import search_dates_aoi 
+from ntlights_processing_utils.eval_overlap import compute_overlaps
 
 # %% ../nbs/05_download_rasters.ipynb 7
 RASTER_TYPES = [

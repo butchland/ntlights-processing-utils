@@ -22,7 +22,7 @@ import sqlalchemy as sqalc
 import geowrangler.area_zonal_stats as azs
 
 # %% ../nbs/04_eval_overlap.ipynb 5
-from ntlights_damage_assessment.fetch_coords import search_dates_aoi 
+from ntlights_processing_utils.fetch_coords import search_dates_aoi 
 
 # %% ../nbs/04_eval_overlap.ipynb 14
 def compute_overlaps(aoi, matched_results):

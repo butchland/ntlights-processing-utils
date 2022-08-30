@@ -5,7 +5,7 @@ Nightlights for Damage Assessment
 
 ## Install
 
-`pip install git+https://github.com/butchland/ntlights-damage-assessment.git`
+`pip install git+https://github.com/butchland/ntlights-processing-utils.git`
 
 ## How to use
 

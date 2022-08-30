@@ -5,7 +5,7 @@ __all__ = ['DATA_DB_DIR', 'DB']
 
 # %% ../nbs/05_build_itemdb.ipynb 4
 import sqlite3 as sql
-import ntlights_damage_assessment.explore_ntlights_stac as ntls
+import ntlights_processing_utils.explore_ntlights_stac as ntls
 
 # %% ../nbs/05_build_itemdb.ipynb 5
 DATA_DB_DIR = '../data/sqlite'
