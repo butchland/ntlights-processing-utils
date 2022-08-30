@@ -22,8 +22,8 @@ from pandas.io import sql
 import sqlalchemy as sqalc
 
 # %% ../nbs/03_fetch_coords.ipynb 5
-from ntlights_damage_assessment.build_catalogs import DB
-from ntlights_damage_assessment.catalogs import get_data
+from ntlights_processing_utils.build_catalogs import DB
+from ntlights_processing_utils.catalogs import get_data
 
 # %% ../nbs/03_fetch_coords.ipynb 8
 def get_coords(href, stem):
