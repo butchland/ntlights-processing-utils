@@ -96,7 +96,7 @@ where {}
   
 
 # %% ../nbs/03_fetch_coords.ipynb 33
-def fetch_cached_coordinates(conn, date_param=None, criteria=None):
+def fetch_cached_coordinates(date_param=None, criteria=None):
     if criteria is not None:
         pass
     elif date_param is None:
