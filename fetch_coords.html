@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Utilities to fetch json file containing coordinates metadata">
+
+<title>ntlights_processing_utils - Fetch Coords</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="styles.css">
+<meta property="og:title" content="ntlights_processing_utils - Fetch Coords">
+<meta property="og:description" content="Utilities to fetch json file containing coordinates metadata">
+<meta property="og:site-name" content="ntlights_processing_utils">
+<meta name="twitter:title" content="ntlights_processing_utils - Fetch Coords">
+<meta name="twitter:description" content="Utilities to fetch json file containing coordinates metadata">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">ntlights_processing_utils</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/butchland/ntlights-processing-utils/tree/master/"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-reader-toggle nav-link" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Fetch Coords</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><del>Nightlights for Damage Assessment</del> Nightlights Processing Utilities</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./catalogs.html" class="sidebar-item-text sidebar-link">Catalogs</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./items.html" class="sidebar-item-text sidebar-link">Items</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./build_catalogs.html" class="sidebar-item-text sidebar-link">Build Catalogs</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./fetch_coords.html" class="sidebar-item-text sidebar-link active">Fetch Coords</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./eval_overlap.html" class="sidebar-item-text sidebar-link">Evaluate Overlaps</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./download_rasters.html" class="sidebar-item-text sidebar-link">Download Rasters</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06_initial_notes.html" class="sidebar-item-text sidebar-link">Initial Notes</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#get_coords" id="toc-get_coords" class="nav-link active" data-scroll-target="#get_coords">get_coords</a></li>
+  <li><a href="#get_rows" id="toc-get_rows" class="nav-link" data-scroll-target="#get_rows">get_rows</a></li>
+  <li><a href="#add_cache_coords" id="toc-add_cache_coords" class="nav-link" data-scroll-target="#add_cache_coords">add_cache_coords</a></li>
+  <li><a href="#fetch_cached_coordinates" id="toc-fetch_cached_coordinates" class="nav-link" data-scroll-target="#fetch_cached_coordinates">fetch_cached_coordinates</a></li>
+  <li><a href="#search_and_cache_dates" id="toc-search_and_cache_dates" class="nav-link" data-scroll-target="#search_and_cache_dates">search_and_cache_dates</a></li>
+  <li><a href="#convert_joined_gdf" id="toc-convert_joined_gdf" class="nav-link" data-scroll-target="#convert_joined_gdf">convert_joined_gdf</a></li>
+  <li><a href="#search_dates_aoi" id="toc-search_dates_aoi" class="nav-link" data-scroll-target="#search_dates_aoi">search_dates_aoi</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/butchland/ntlights-processing-utils/tree/master/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Fetch Coords</h1>
+</div>
+
+<div>
+  <div class="description">
+    Utilities to fetch json file containing coordinates metadata
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
+<hr>
+<section id="get_coords" class="level3">
+<h3 class="anchored" data-anchor-id="get_coords">get_coords</h3>
+<blockquote class="blockquote">
+<pre><code> get_coords (href, stem)</code></pre>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>stem <span class="op">=</span> <span class="st">'SVDNB_npp_d20180501_t0004098_e0009502_b33718_c20180501060951522600_noac_ops'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>href <span class="op">=</span> <span class="st">'https://globalnightlight.s3.amazonaws.com/npp_201805/SVDNB_npp_d20180501_t0004098_e0009502_b33718_c20180501060951522600_noac_ops.rade9.co.json'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>row <span class="op">=</span> get_coords(href,stem)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>CPU times: user 41.9 ms, sys: 0 ns, total: 41.9 ms
+Wall time: 1.27 s</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>row</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>{'stem': 'SVDNB_npp_d20180501_t0004098_e0009502_b33718_c20180501060951522600_noac_ops',
+ 'asset_href': 'https://globalnightlight.s3.amazonaws.com/npp_201805/SVDNB_npp_d20180501_t0004098_e0009502_b33718_c20180501060951522600_noac_ops.rade9.co.tif',
+ 'geometry': &lt;shapely.geometry.polygon.Polygon&gt;}</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>date_param <span class="op">=</span> <span class="st">'20180501'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="st">'%'</span> <span class="kw">in</span> date_param:</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    query <span class="op">=</span> <span class="ss">f'select * from catalog_items where start_date like "</span><span class="sc">{</span>date_param<span class="sc">}</span><span class="ss">"'</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    query <span class="op">=</span> <span class="ss">f'select * from catalog_items where start_date = "</span><span class="sc">{</span>date_param<span class="sc">}</span><span class="ss">"'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>conn <span class="op">=</span> sql3.<span class="ex">connect</span>(DB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>items_df <span class="op">=</span> pd.read_sql_query(query,conn,dtype<span class="op">=</span><span class="bu">str</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>CPU times: user 719 ms, sys: 791 ms, total: 1.51 s
+Wall time: 10.2 s</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>items_df.columns.values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>array(['href', 'item_href', 'stem', 'suffix', 'base_url', 'folder',
+       'product_id', 'start_date', 'first_scantime', 'end_scantime',
+       'orbital_nbr', 'create_datetime', 'data_origin', 'data_domain',
+       'vflag_file', 'vflag_href'], dtype=object)</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>items_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>href</th>
+      <th>item_href</th>
+      <th>stem</th>
+      <th>suffix</th>
+      <th>base_url</th>
+      <th>folder</th>
+      <th>product_id</th>
+      <th>start_date</th>
+      <th>first_scantime</th>
+      <th>end_scantime</th>
+      <th>orbital_nbr</th>
+      <th>create_datetime</th>
+      <th>data_origin</th>
+      <th>data_domain</th>
+      <th>vflag_file</th>
+      <th>vflag_href</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>./SVDNB_npp_d20180501_t0004098_e0009502_b33718_c20180501060951522600_noac_ops.rade9.co.json</td>
+      <td>https://globalnightlight.s3.amazonaws.com/npp_201805/SVDNB_npp_d20180501_t0004098_e0009502_b33718_c20180501060951522...</td>
+      <td>SVDNB_npp_d20180501_t0004098_e0009502_b33718_c20180501060951522600_noac_ops</td>
+      <td>rade9.co.json</td>
+      <td>https://globalnightlight.s3.amazonaws.com</td>
+      <td>npp_201805</td>
+      <td>SVDNB_npp</td>
+      <td>20180501</td>
+      <td>0004098</td>
+      <td>0009502</td>
+      <td>33718</td>
+      <td>20180501060951522600</td>
+      <td>noac</td>
+      <td>ops</td>
+      <td>npp_d20180501_t0004098_e0009502_b33718.vflag.co.tif</td>
+      <td>https://globalnightlight.s3.amazonaws.com/npp_201805/npp_d20180501_t0004098_e0009502_b33718.vflag.co.tif</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>./SVDNB_npp_d20180501_t0009514_e0015318_b33718_c20180501061532603366_noac_ops.rade9.co.json</td>
+      <td>https://globalnightlight.s3.amazonaws.com/npp_201805/SVDNB_npp_d20180501_t0009514_e0015318_b33718_c20180501061532603...</td>
+      <td>SVDNB_npp_d20180501_t0009514_e0015318_b33718_c20180501061532603366_noac_ops</td>
+      <td>rade9.co.json</td>
+      <td>https://globalnightlight.s3.amazonaws.com</td>
+      <td>npp_201805</td>
+      <td>SVDNB_npp</td>
+      <td>20180501</td>
+      <td>0009514</td>
+      <td>0015318</td>
+      <td>33718</td>
+      <td>20180501061532603366</td>
+      <td>noac</td>
+      <td>ops</td>
+      <td>npp_d20180501_t0009514_e0015318_b33718.vflag.co.tif</td>
+      <td>https://globalnightlight.s3.amazonaws.com/npp_201805/npp_d20180501_t0009514_e0015318_b33718.vflag.co.tif</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>./SVDNB_npp_d20180501_t0112274_e0118078_b33719_c20180501071808369542_noac_ops.rade9.co.json</td>
+      <td>https://globalnightlight.s3.amazonaws.com/npp_201805/SVDNB_npp_d20180501_t0112274_e0118078_b33719_c20180501071808369...</td>
+      <td>SVDNB_npp_d20180501_t0112274_e0118078_b33719_c20180501071808369542_noac_ops</td>
+      <td>rade9.co.json</td>
+      <td>https://globalnightlight.s3.amazonaws.com</td>
+      <td>npp_201805</td>
+      <td>SVDNB_npp</td>
+      <td>20180501</td>
+      <td>0112274</td>
+      <td>0118078</td>
+      <td>33719</td>
+      <td>20180501071808369542</td>
+      <td>noac</td>
+      <td>ops</td>
+      <td>npp_d20180501_t0112274_e0118078_b33719.vflag.co.tif</td>
+      <td>https://globalnightlight.s3.amazonaws.com/npp_201805/npp_d20180501_t0112274_e0118078_b33719.vflag.co.tif</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>./SVDNB_npp_d20180501_t0118090_e0123494_b33719_c20180501072349439701_noac_ops.rade9.co.json</td>
+      <td>https://globalnightlight.s3.amazonaws.com/npp_201805/SVDNB_npp_d20180501_t0118090_e0123494_b33719_c20180501072349439...</td>
+      <td>SVDNB_npp_d20180501_t0118090_e0123494_b33719_c20180501072349439701_noac_ops</td>
+      <td>rade9.co.json</td>
+      <td>https://globalnightlight.s3.amazonaws.com</td>
+      <td>npp_201805</td>
+      <td>SVDNB_npp</td>
+      <td>20180501</td>
+      <td>0118090</td>
+      <td>0123494</td>
+      <td>33719</td>
+      <td>20180501072349439701</td>
+      <td>noac</td>
+      <td>ops</td>
+      <td>npp_d20180501_t0118090_e0123494_b33719.vflag.co.tif</td>
+      <td>https://globalnightlight.s3.amazonaws.com/npp_201805/npp_d20180501_t0118090_e0123494_b33719.vflag.co.tif</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>./SVDNB_npp_d20180501_t0123507_e0129293_b33719_c20180501072930507231_noac_ops.rade9.co.json</td>
+      <td>https://globalnightlight.s3.amazonaws.com/npp_201805/SVDNB_npp_d20180501_t0123507_e0129293_b33719_c20180501072930507...</td>
+      <td>SVDNB_npp_d20180501_t0123507_e0129293_b33719_c20180501072930507231_noac_ops</td>
+      <td>rade9.co.json</td>
+      <td>https://globalnightlight.s3.amazonaws.com</td>
+      <td>npp_201805</td>
+      <td>SVDNB_npp</td>
+      <td>20180501</td>
+      <td>0123507</td>
+      <td>0129293</td>
+      <td>33719</td>
+      <td>20180501072930507231</td>
+      <td>noac</td>
+      <td>ops</td>
+      <td>npp_d20180501_t0123507_e0129293_b33719.vflag.co.tif</td>
+      <td>https://globalnightlight.s3.amazonaws.com/npp_201805/npp_d20180501_t0123507_e0129293_b33719.vflag.co.tif</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="get_rows" class="level3">
+<h3 class="anchored" data-anchor-id="get_rows">get_rows</h3>
+<blockquote class="blockquote">
+<pre><code> get_rows (items_df)</code></pre>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>rows <span class="op">=</span> get_rows(items_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>CPU times: user 4.06 s, sys: 0 ns, total: 4.06 s
+Wall time: 2min 49s</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>rows_df <span class="op">=</span> pd.DataFrame.from_records(rows)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>rows_df.columns.values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>array(['stem', 'asset_href', 'geometry'], dtype=object)</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>rows_df.dtypes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>stem          object
+asset_href    object
+geometry      object
+dtype: object</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>rows_gdf <span class="op">=</span> gpd.GeoDataFrame(rows_df, geometry<span class="op">=</span><span class="st">'geometry'</span>, crs<span class="op">=</span><span class="st">'EPSG:4326'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>rows_wkt  <span class="op">=</span> rows_gdf.to_wkt()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>rows_wkt.dtypes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>stem          object
+asset_href    object
+geometry      object
+dtype: object</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># conn.executescript(drop_coords_cache_sql);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># conn.executescript(create_coords_cache_sql);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># %%time</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co"># row_count = rows_wkt.to_sql('coords_cache', conn, if_exists='append', index=False, method='multi')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="add_cache_coords" class="level3">
+<h3 class="anchored" data-anchor-id="add_cache_coords">add_cache_coords</h3>
+<blockquote class="blockquote">
+<pre><code> add_cache_coords (items_df, cache_table='coords_cache')</code></pre>
+</blockquote>
+<hr>
+</section>
+<section id="fetch_cached_coordinates" class="level3">
+<h3 class="anchored" data-anchor-id="fetch_cached_coordinates">fetch_cached_coordinates</h3>
+<blockquote class="blockquote">
+<pre><code> fetch_cached_coordinates (date_param=None, criteria=None)</code></pre>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>cached_df <span class="op">=</span> fetch_cached_coordinates(<span class="st">'20180501'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>CPU times: user 44.8 ms, sys: 108 ms, total: 152 ms
+Wall time: 151 ms</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="bu">len</span>(cached_df[cached_df.cache_stem <span class="op">==</span> <span class="st">'NA'</span>]) <span class="op">==</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>cached_df2 <span class="op">=</span> fetch_cached_coordinates(<span class="st">'20121015'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>CPU times: user 23.6 ms, sys: 96.9 ms, total: 121 ms
+Wall time: 121 ms</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> <span class="bu">len</span>(cached_df2[cached_df2.stem <span class="op">==</span> cached_df2.cache_stem]) <span class="op">==</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="search_and_cache_dates" class="level3">
+<h3 class="anchored" data-anchor-id="search_and_cache_dates">search_and_cache_dates</h3>
+<blockquote class="blockquote">
+<pre><code> search_and_cache_dates (date_param=None, criteria=None)</code></pre>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>joined_df <span class="op">=</span> search_and_cache_dates(date_param<span class="op">=</span><span class="st">'20180501'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>CPU times: user 31.9 ms, sys: 87.8 ms, total: 120 ms
+Wall time: 119 ms</code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="convert_joined_gdf" class="level3">
+<h3 class="anchored" data-anchor-id="convert_joined_gdf">convert_joined_gdf</h3>
+<blockquote class="blockquote">
+<pre><code> convert_joined_gdf (joined_df, crs='EPSG:4326')</code></pre>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>joined_gdf <span class="op">=</span> convert_joined_gdf(joined_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>aoi <span class="op">=</span> gpd.read_file(<span class="st">'../data/admin_areas/ph_admin_bbox_wgs84.geojson'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> plt.axes()</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> joined_gdf.plot(ax<span class="op">=</span>ax, facecolor<span class="op">=</span><span class="st">'none'</span>, edgecolor<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> aoi.plot(ax<span class="op">=</span>ax,color<span class="op">=</span><span class="st">'red'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>CPU times: user 290 ms, sys: 2.82 ms, total: 293 ms
+Wall time: 234 ms</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="03_fetch_coords_files/figure-html/cell-35-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>filtered_gdf <span class="op">=</span> joined_gdf.sjoin(aoi,how<span class="op">=</span><span class="st">'inner'</span>,predicate<span class="op">=</span><span class="st">'intersects'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>filtered_gdf.drop(columns<span class="op">=</span><span class="st">'index_right'</span>,inplace<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+</section>
+<section id="search_dates_aoi" class="level3">
+<h3 class="anchored" data-anchor-id="search_dates_aoi">search_dates_aoi</h3>
+<blockquote class="blockquote">
+<pre><code> search_dates_aoi (aoi:geopandas.geodataframe.GeoDataFrame,
+                   date_param:str=None, criteria:str=None,
+                   crs='EPSG:4326')</code></pre>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>phl_matched20180501 <span class="op">=</span> search_dates_aoi(aoi, date_param<span class="op">=</span><span class="st">'20180501'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>CPU times: user 73.6 ms, sys: 104 ms, total: 178 ms
+Wall time: 177 ms</code></pre>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
